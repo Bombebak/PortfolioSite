@@ -2,17 +2,19 @@
 @{
     ViewBag.Title = "Tilfældigt valg af land";
 }
+<link rel="stylesheet" href="~/Content/Css/bootstrap.min.css" />
 <link rel="stylesheet" href="~/Content/Css/lottery.css" />
 <div class="container">
     @if (!Model.HasPicked)
-    {
-        using (Html.BeginForm("PickRandomCountry", "Lottery", new { userId = Model.UserId }, FormMethod.Post, null))
+    {<div class="top-btn">
+        @using (Html.BeginForm("PickRandomCountry", "Lottery", new { userId = Model.UserId }, FormMethod.Post, null))
         {
 
-            <div class="top-btn">
-                <input type="submit" value="Tryk for at få et tilfældigt land" id="btnSave" name="cmd" class="btn btn-primary btn-lg" />
-            </div>
+
+        <input type="submit" value="Tryk for at få et tilfældigt land" id="btnSave" name="cmd" class="btn btn-primary btn-lg" />
+
         }
+    </div>
     }
 
 
