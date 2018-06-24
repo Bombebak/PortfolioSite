@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LotteryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="LotteryDbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CountryTables" EntityType="LotteryModel.CountryTable" />
+    <EntitySet Name="CountryUserSelectedTables" EntityType="LotteryModel.CountryUserSelectedTable" />
+    <EntitySet Name="CountryUserTables" EntityType="LotteryModel.CountryUserTable" />
+    <AssociationSet Name="FK_Country" Association="LotteryModel.FK_Country">
+      <End Role="CountryTable" EntitySet="CountryTables" />
+      <End Role="CountryUserSelectedTable" EntitySet="CountryUserSelectedTables" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User" Association="LotteryModel.FK_User">
+      <End Role="CountryUserTable" EntitySet="CountryUserTables" />
+      <End Role="CountryUserSelectedTable" EntitySet="CountryUserSelectedTables" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="CountryTable">
+    <Key>
+      <PropertyRef Name="CountryId" />
+    </Key>
+    <Property Name="CountryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CountryUserSelectedTables" Relationship="LotteryModel.FK_Country" FromRole="CountryTable" ToRole="CountryUserSelectedTable" />
+  </EntityType>
+  <EntityType Name="CountryUserSelectedTable">
+    <Key>
+      <PropertyRef Name="CountryUserId" />
+    </Key>
+    <Property Name="CountryUserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CountryId" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CountryTable" Relationship="LotteryModel.FK_Country" FromRole="CountryUserSelectedTable" ToRole="CountryTable" />
+    <NavigationProperty Name="CountryUserTable" Relationship="LotteryModel.FK_User" FromRole="CountryUserSelectedTable" ToRole="CountryUserTable" />
+  </EntityType>
+  <EntityType Name="CountryUserTable">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="RegId" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CountryUserSelectedTables" Relationship="LotteryModel.FK_User" FromRole="CountryUserTable" ToRole="CountryUserSelectedTable" />
+  </EntityType>
+  <Association Name="FK_Country">
+    <End Type="LotteryModel.CountryTable" Role="CountryTable" Multiplicity="1" />
+    <End Type="LotteryModel.CountryUserSelectedTable" Role="CountryUserSelectedTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CountryTable">
+        <PropertyRef Name="CountryId" />
+      </Principal>
+      <Dependent Role="CountryUserSelectedTable">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User">
+    <End Type="LotteryModel.CountryUserTable" Role="CountryUserTable" Multiplicity="1" />
+    <End Type="LotteryModel.CountryUserSelectedTable" Role="CountryUserSelectedTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CountryUserTable">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="CountryUserSelectedTable">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
