@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="Portfolio" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\Den_F\\Documents\\GitHub\\PortfolioSite\\PortfolioApp\\PortfolioApp\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\Den_F\\Documents\\GitHub\\PortfolioSite\\PortfolioApp\\PortfolioApp\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="umbracoDbDSN-Web.config Connection String" description="" value="Server=mysql65.unoeuro.com; Database=jakobbak_dk_db;Uid=jakobbak_dk;Pwd='hd9tx35y'" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Den_F\\Documents\\GitHub\\PortfolioSite\\PortfolioApp\\PortfolioApp\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='umbracoDbDSN']/@connectionString" />
+  </parameter>
+</parameters>

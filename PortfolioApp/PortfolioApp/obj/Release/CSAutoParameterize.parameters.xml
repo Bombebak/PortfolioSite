@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="umbracoDbDSN-Web.config Connection String" description="umbracoDbDSN Connection String used in web.config by the application to access the database." defaultValue="Server=mysql65.unoeuro.com; Database=jakobbak_dk_db;Uid=jakobbak_dk;Pwd='hd9tx35y'" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Den_F\\Documents\\GitHub\\PortfolioSite\\PortfolioApp\\PortfolioApp\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='umbracoDbDSN']/@connectionString" />
+  </parameter>
+</parameters>
